@@ -8,7 +8,12 @@
                 "path": "config/"
             }
         ],
-        "patchScript": [],
+        "patchScript": [
+            {
+                "name": "app_portal__views_portal.py",
+                "path": "apps/portal/viewset/"
+            }
+        ],
         "patchJson": [
             {
                 "name": "urls.json",
