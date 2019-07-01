@@ -1,0 +1,136 @@
+{
+    "querystring": {
+        "p_l": 40,
+        "p_c": true,
+        "s_activo__exact": true,
+        "s_usuario__ne": "admin",
+        "f_usuariosCompania": null
+    },
+
+    "schema": {
+        "aqn_invitations": {
+            "querystring": {
+                "p_l": 10,
+                "p_c": 1,
+                "o_1": "id",
+                "s_activo__exact": true,
+                "f_usuariosCompania": null
+            }
+        }
+    },
+    "focus": "email",
+    "layout": {
+        "enviarInvitacionButton": {
+            "componente": "YBButton",
+            "prefix": "aqn_invitations",
+            "label": "Enviar Invitacion",
+            "className": "floatRight",
+            "buttonType": "flat",
+            "style": {
+                "marginTop": "5px",
+                "marginRight": "5px"
+            },
+            "action": {
+                "key": "nuevaInvitacion",
+                "success": [{"slot": "refrescar"}]
+            }
+        },
+        "separator0": {
+            "componente": "YBSeparator"
+        },
+        "masterUsuarios": {
+            "componente": "YBGrid",
+            "label": "Usuarios",
+            "icon": "person",
+            "prefix": "aqn_user",
+            "filter": "buscador",
+            "columns": [
+                {
+                    "tipo": "act",
+                    "key": "desactivarUsu",
+                    "label": "Desactivar usuario",
+                    "success": [
+                        {"slot": "refrescar"}
+                    ]
+                },
+                {"tipo": "field", "listpos": "subtitle", "key": "nombre", "avatar": true},
+                {"tipo": "field", "listpos": "title", "key": "email"},
+                {"tipo": "field", "listpos": "secondaryitem", "key": "usuario"}
+            ],
+            "rowclick": "link"
+        },
+        "newRecordTelest": {
+            "componente": "YBNewRecordGoTo",
+            "class": "info",
+            "icon": "add",
+            "goto": "/signup",
+            "visible": false
+        },
+        "separator1": {
+            "componente": "YBSeparator"
+        },
+        "masterInvitaciones": {
+            "componente": "YBGrid",
+            "label": "Invitaciones",
+            "icon": "supervisor_account",
+            "prefix": "aqn_invitations",
+            "filter": "",
+            "columns": [
+                {
+                    "tipo": "act",
+                    "key": "delete",
+                    "label": "Borrar Linea",
+                    "success": [
+                        {"slot": "refrescar"}
+                    ]
+                },
+                {
+                    "tipo": "act",
+                    "key": "reenviarInvi",
+                    "label": "reenviar",
+                    "success": [
+                        {"slot": ""}
+                    ]
+                },
+                {"tipo": "field", "listpos": "subtitle", "key": "email", "avatar": true},
+                {"tipo": "field", "listpos": "body", "key": "fecha"}
+            ],
+            "rowclick": ""
+        }
+    },
+    "acciones": {
+        "delete": {
+            "action": "deleteRow",
+            "icon": "delete"
+        },
+        "desactivarUsu": {
+            "action": "legacy",
+            "prefix": "aqn_user",
+            "serverAction": "desactivar_usuario",
+            "icon": "delete"
+        },
+        "reenviarInvi": {
+            "action": "legacy",
+            "prefix": "aqn_invitations",
+            "serverAction": "reenviar_invitacion",
+            "icon": "email"
+        },
+        "nuevaInvitacion": {
+            "action": "legacy",
+            "prefix": "aqn_invitations",
+            "serverAction": "nueva_invitacion",
+            "icon": "email",
+            "params": [
+                {
+                    "tipo": 3,
+                    "verbose_name": "email",
+                    "key": "email",
+                    "validaciones": null,
+                    "style": {
+                        "width": "100%"
+                    }
+                }
+            ]
+        }
+    }
+}

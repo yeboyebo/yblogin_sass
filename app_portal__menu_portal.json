@@ -1,0 +1,14 @@
+{
+    "modifications": [
+        {
+            "type": "insertAfterItem",
+            "path": "/items[root]",
+            "value": {
+                "NAME": "gesttare",
+                "TEXT": "GESTTARE",
+                "URL": "gesttare",
+                "ICON": "insert_chart"
+            }
+        }
+    ]
+}

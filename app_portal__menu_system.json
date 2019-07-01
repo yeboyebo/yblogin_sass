@@ -1,0 +1,27 @@
+{
+    "modifications": [
+        {
+            "type": "insertAfterNode",
+            "path": "/root",
+            "value": {
+                "logo": true
+            }
+        },
+        {
+            "type": "updateNode",
+            "path": "/items[usuarios]/URL",
+            "value": "system/aqn_user/master"
+        },
+        {
+            "type": "insertAfterItem",
+            "path": "/items[grupos]",
+            "value": {
+                "NAME": "aqn_companies",
+                "TEXT": "COMPAÑIAS",
+                "URL": "system/aqn_companies/master",
+                "ICON": "insert_chart",
+                "VISIBLE": false
+            }
+        }
+    ]
+}
