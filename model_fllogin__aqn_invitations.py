@@ -21,8 +21,27 @@ class gesttare_aqn_invitations(interna_aqn_invitations, helpers.MixinConAcciones
         proxy = True
 
 
+# @class_declaration yblogin_sass_aqn_invitations #
+class yblogin_sass_aqn_invitations(gesttare_aqn_invitations, helpers.MixinConAcciones):
+    pass
+
+    class Meta:
+        proxy = True
+
+    @helpers.decoradores.accion(aqparam=["oParam"])
+    def nueva_invitacion(self, oParam):
+        return form.iface.nueva_invitacion(oParam)
+
+    @helpers.decoradores.accion(aqparam=["oParam"])
+    def reenviar_invitacion(self, oParam):
+        return form.iface.reenviar_invitacion(self, oParam)
+
+    def envioMailInvitacion(email, hashcode):
+        return form.iface.envioMailInvitacion(email, hashcode)
+
+
 # @class_declaration aqn_invitations #
-class aqn_invitations(gesttare_aqn_invitations, helpers.MixinConAcciones):
+class aqn_invitations(yblogin_sass_aqn_invitations, helpers.MixinConAcciones):
     pass
 
     class Meta:
