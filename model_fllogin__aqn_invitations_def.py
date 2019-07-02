@@ -12,6 +12,9 @@ class interna(qsatype.objetoBase):
 
 # @class_declaration yblogin_sass #
 from YBLEGACY.constantes import *
+import re
+import hashlib
+from YBUTILS import notifications
 
 
 class yblogin_sass(interna):
