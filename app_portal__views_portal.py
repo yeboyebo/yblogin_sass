@@ -9,7 +9,7 @@ from YBUTILS import notifications
 
 class yblogin_sass(yblogin):
 
- def yblogin_sass_account(self, request):
+    def yblogin_sass_account(self, request):
         url = "/system/aqn_user/" + str(qsatype.FLUtil.nameUser())
         return HttpResponseRedirect(url)
         # return render(request, "portal/account.html", {"error": error, "usuario": request.user})
