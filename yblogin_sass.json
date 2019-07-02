@@ -10,6 +10,10 @@
             {
                 "name": "app_portal__account.html",
                 "path": "apps/portal/templates/portal/"
+            },
+            {
+                "path": "apps/portal/templates/portal/",
+                "name": "app_portal__login.html"
             }
         ],
         "patchScript": [
