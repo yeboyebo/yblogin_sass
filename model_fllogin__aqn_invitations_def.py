@@ -63,7 +63,7 @@ class yblogin_sass(interna):
             nombreCompania = qsatype.FLUtil.sqlSelect(u"aqn_companies", u"nombre", ustr(u"idcompany = '", str(idcompany), u"'"))
         else:
             nombreCompania = ""
-        urlJoin = "https://demo.dailyjob.io/join/" + hashcode
+        urlJoin = "https://app.dailyjob.io/join/" + hashcode
         # urlJoin = "http://127.0.0.1:8000/join/" + hashcode
         # cuerpo = "<img src='https://app.dailyjob.io/static/dist/img/logo/logo.png'/>"
         # cuerpo += "<br><a href='" + urlJoin + "''>Unirse DailyJob</a>"
