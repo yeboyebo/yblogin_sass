@@ -287,30 +287,30 @@ class yblogin_sass(yblogin):
         cursor.refreshBuffer()
         # email = cursor.valueBuffer("email")
         idcompany = cursor.valueBuffer("idcompany")
-        codproyecto = cursor.valueBuffer("codproyecto")
+        idproyecto = cursor.valueBuffer("idproyecto")
 
         if request.method == "POST":
             idusuario = qsatype.FLUtil.sqlSelect(u"aqn_user", u"idusuario", u"email = '" + str(cursor.valueBuffer("email")) + u"'")
             curPartic = qsatype.FLSqlCursor("gt_particproyecto")
-            curPartic.select("idusuario = '{}' AND codproyecto = '{}'".format(idusuario, codproyecto))
+            curPartic.select("idusuario = '{}' AND idproyecto = '{}'".format(idusuario, str(idproyecto)))
             curPartic.refreshBuffer()
             if curPartic.first():
                 return HttpResponseRedirect("/")
             curPartic.setModeAccess(curPartic.Insert)
             curPartic.refreshBuffer()
             curPartic.setValueBuffer("idusuario", idusuario)
-            curPartic.setValueBuffer("codproyecto", codproyecto)
+            curPartic.setValueBuffer("idproyecto", idproyecto)
             if not curPartic.commitBuffer():
                 return HttpResponseRedirect("/")
 
             if not qsatype.FLUtil.sqlUpdate(u"aqn_invitations", u"activo", False, ustr(u"id = '", str(cursor.valueBuffer("id")), "'")):
                 return False
             return HttpResponseRedirect("/")
-        return self.iface.cooperate(request, codproyecto, idcompany)
+        return self.iface.cooperate(request, idproyecto, idcompany)
 
-    def yblogin_sass_cooperate(self, request, codproyecto, idcompany):
+    def yblogin_sass_cooperate(self, request, idproyecto, idcompany):
         nombreEmpresa = qsatype.FLUtil.sqlSelect(u"aqn_companies", u"nombre", u"idcompany = '" + str(idcompany) + u"'")
-        nombreProyecto = qsatype.FLUtil.sqlSelect(u"gt_proyectos", u"nombre", u"codproyecto = '" + codproyecto + u"'")
+        nombreProyecto = qsatype.FLUtil.sqlSelect(u"gt_proyectos", u"nombre", u"idproyecto = '" + str(idproyecto) + u"'")
         return render(request, "portal/cooperate.html", {"error": "", "nombreEmpresa": nombreEmpresa, "nombreProyecto": nombreProyecto})
 
     def yblogin_sass_forgetPassword_request(self, request):
@@ -384,8 +384,8 @@ class yblogin_sass(yblogin):
     def cooperate_request(self, request, hashparam):
         return self.iface.yblogin_sass_cooperate_request(request, hashparam)
 
-    def cooperate(self, request, codproyecto, idcompany):
-        return self.iface.yblogin_sass_cooperate(request, codproyecto, idcompany)
+    def cooperate(self, request, idproyecto, idcompany):
+        return self.iface.yblogin_sass_cooperate(request, idproyecto, idcompany)
 
     def join(self, request, email, error):
         return self.iface.yblogin_sass_join(request, email, error)
